@@ -1,0 +1,121 @@
+PRESENTATION NOTES:
+
+Run `sdk env`
+
+* Use start.spring.io to generate a Spring Boot 1.0 project
+
+	docker run -it -p 7070:80 dsyer/initializr:1.0.0
+	open http://localhost:7070
+
+* Throw it away and use the checked out application
+
+* Tour the `spring-doge-photo` library
+  *  `PhotoManipulator` and the implementation
+
+* Tour the `spring-doge` application
+  * Show the dependencies
+  * Show the main `DogeApplication` (just a main method and some beans)
+  * Show `DogeProperties` and `application.properties`
+  * Show the domain
+  * Show the service
+  * Show the @RestController
+
+* Run the application from IDE
+  * Show the printed message
+  * http -f POST :8080/users/philwebb/doge file@photos/thehoff.png
+  * http -f POST :8080/users/philwebb/doge file@photos/thehoff.png | grep Location | sed "s/Location: //" | sed 's/\r$//' | xargs open
+  * open http://localhost:8080/health
+  * open http://localhost:8080/env (super insecure)
+  * open http://localhost:8080/metrics
+
+* Show only 18 auto-configure packages
+
+* Build and show the jar
+  * ./mvnw clean install
+  * unzip -l spring-doge/target/spring-doge-1.0.0-SNAPSHOT.jar
+  * with the IDE app running do ./mvnw -f spring-doge/pom.xml spring-boot:run and show the ugly stacktrace
+
+* SSH using password 'spring'
+
+    ssh -oKexAlgorithms=+diffie-hellman-group14-sha1,diffie-hellman-group1-sha1 -oHostkeyAlgorithms=+ssh-rsa -oPubkeyAcceptedAlgorithms=+ssh-rsa -c aes256-cbc -p2000 -T user@localhost
+
+    endpoint invoke healthEndpoint
+
+  VERY VERY INSECURE (show https://github.com/crashub/crash last commit)
+
+-- back to slides --
+
+Get to just before 2.7
+
+* Rebuild
+    ./mvnw clean install
+    ./mvnw -f spring-doge/pom.xml spring-boot:run
+
+* Show the banner
+* Show app works
+* Show the /health endpoint
+* Trigger a port failure and show the analyzer
+
+-- back to slides --
+
+Get to just before 3.4
+
+* sdk env
+* Rebuild
+    ./mvnw clean install
+    ./mvnw -f spring-doge/pom.xml spring-boot:run
+
+* http://localhost:8080/actuator/
+* http://localhost:8080/actuator/env/doge.welcome-message
+* http://localhost:8080/actuator/health/
+* Trigger a failure (no ugly stack trace)
+* unzip -l spring-doge/target/spring-doge-1.0.0-SNAPSHOT.jar
+
+* Show buildpacks
+
+	./mvnw -f spring-doge/pom.xml spring-boot:build-image
+	docker run -it -p8080:8080 spring-doge:1.0.0-SNAPSHOT
+
+-- back to slides --
+
+Get to Upgrade to Java 21
+
+Update IDE and debug to show number of thread
+
+Enable virtual threads
+
+Update IDE and debug to show number of thread
+
+Get to "Use Testcontainers so the test works"
+
+Run from IDE show compose starting
+Run test and show testcontainers
+
+* Rebuild Image
+    ./mvnw clean install
+    ./mvnw -f spring-doge/pom.xml spring-boot:build-image
+
+compose down
+docker run --network="host" -it -p8080:8080 spring-doge:1.0.0-SNAPSHOT (fails)
+compose up
+docker run --network="host" -it -p8080:8080 spring-doge:1.0.0-SNAPSHOT (OK)
+
+Get to "create native image"
+
+Show play music link
+
+sdk env
+./mvnw -f spring-doge/pom.xml -Pnative native:compile
+./spring-doge/target/spring-doge
+
+(for some reason bp fail to run)
+
+./mvnw -f spring-doge/pom.xml -Pnative spring-boot:build-image
+docker run --network="host" -it -p8080:8080 spring-doge:1.0.0-SNAPSHOT
+
+-- back to slides --
+
+
+
+
+
