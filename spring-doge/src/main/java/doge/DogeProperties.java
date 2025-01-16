@@ -19,16 +19,6 @@ package doge;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties("doge")
-public class DogeProperties {
-
-	private String welcomeMessage;
-
-	public String getWelcomeMessage() {
-		return this.welcomeMessage;
-	}
-
-	public void setWelcomeMessage(String welcomeMessage) {
-		this.welcomeMessage = welcomeMessage;
-	}
+public record DogeProperties(String welcomeMessage) {
 
 }

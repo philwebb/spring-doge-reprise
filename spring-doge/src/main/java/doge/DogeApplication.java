@@ -54,7 +54,7 @@ public class DogeApplication {
 
 	@Bean
 	CommandLineRunner commandLineRunner(DogeProperties properties) {
-		return (args) -> System.out.println("\n\n" + properties.getWelcomeMessage() + "\n\n");
+		return (args) -> System.out.println("\n\n" + properties.welcomeMessage() + "\n\n");
 	}
 
 	public static void main(String[] args) {
