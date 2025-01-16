@@ -16,42 +16,8 @@
 
 package doge.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import org.springframework.data.annotation.Id;
 
-@Entity
-public class DogeUser {
-
-	@Id
-	@GeneratedValue
-	private long id;
-
-	@Column(unique = true)
-	private String username;
-
-	private String name;
-
-	public DogeUser(String username, String name) {
-		this.username = username;
-		this.name = name;
-	}
-
-	DogeUser() {
-	}
-
-	public String getUsername() {
-		return this.username;
-	}
-
-	public String getName() {
-		return this.name;
-	}
-
-	@Override
-	public String toString() {
-		return "User [id=" + this.id + ", username=" + this.username + ", name=" + this.name + "]";
-	}
+public record DogeUser(@Id Long id, String username, String name) {
 
 }

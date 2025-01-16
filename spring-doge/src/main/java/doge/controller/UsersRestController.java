@@ -64,9 +64,7 @@ public class UsersRestController {
 		DogeUser user = getUser(username);
 		Photo sourcePhoto = file::getInputStream;
 		DogePhoto dogePhoto = this.dogeService.add(user, sourcePhoto);
-		URI uri = uriBuilder.path("/users/{username}/doge/{uuid}")
-			.buildAndExpand(username, dogePhoto.getUuid())
-			.toUri();
+		URI uri = uriBuilder.path("/users/{username}/doge/{uuid}").buildAndExpand(username, dogePhoto.uuid()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 

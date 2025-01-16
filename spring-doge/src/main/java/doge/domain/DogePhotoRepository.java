@@ -20,6 +20,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface DogePhotoRepository extends CrudRepository<DogePhoto, Long> {
 
-	DogePhoto findByDogeUserAndUuid(DogeUser dogeUser, String uuid);
+	DogePhoto findByDogeUserAndUuid(long dogeUser, String uuid);
 
 }

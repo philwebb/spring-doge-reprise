@@ -20,43 +20,11 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-
 import doge.photo.Photo;
 
-@Entity
-public class DogePhoto implements Photo {
+import org.springframework.data.annotation.Id;
 
-	@Id
-	@GeneratedValue
-	private long id;
-
-	@ManyToOne
-	private DogeUser dogeUser;
-
-	@Column(unique = true)
-	private String uuid;
-
-	@Lob
-	private byte[] data;
-
-	public DogePhoto(DogeUser dogeUser, String uuid, byte[] data) {
-		this.dogeUser = dogeUser;
-		this.uuid = uuid;
-		this.data = data;
-	}
-
-	DogePhoto() {
-	}
-
-	public String getUuid() {
-		return this.uuid;
-	}
+public record DogePhoto(@Id Long id, long dogeUser, String uuid, byte[] data) implements Photo {
 
 	@Override
 	public InputStream getInputStream() throws IOException {

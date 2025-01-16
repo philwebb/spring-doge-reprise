@@ -46,8 +46,8 @@ public class DogeApplication {
 	@Bean
 	InitializingBean populateTestData(DogeUserRepository userRepository) {
 		return () -> {
-			userRepository.save(new DogeUser("philwebb", "Phil Webb"));
-			userRepository.save(new DogeUser("joshlong", "Josh Long"));
+			userRepository.save(new DogeUser(null, "philwebb", "Phil Webb"));
+			userRepository.save(new DogeUser(null, "joshlong", "Josh Long"));
 			userRepository.findAll().forEach(System.err::println);
 		};
 	}

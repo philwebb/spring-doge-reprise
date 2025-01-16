@@ -44,7 +44,7 @@ public class DogePhotoService {
 	}
 
 	public DogePhoto get(DogeUser user, String uuid) {
-		DogePhoto dogePhoto = this.dogePhotoRepository.findByDogeUserAndUuid(user, uuid);
+		DogePhoto dogePhoto = this.dogePhotoRepository.findByDogeUserAndUuid(user.id(), uuid);
 		Assert.state(dogePhoto != null, "Unable to find doge photo");
 		return dogePhoto;
 	}
@@ -52,7 +52,7 @@ public class DogePhotoService {
 	public DogePhoto add(DogeUser user, Photo photo) throws IOException {
 		photo = this.manipulator.manipulate(photo);
 		String uuid = UUID.randomUUID().toString();
-		DogePhoto dogePhoto = new DogePhoto(user, uuid, StreamUtils.copyToByteArray(photo.getInputStream()));
+		DogePhoto dogePhoto = new DogePhoto(null, user.id(), uuid, StreamUtils.copyToByteArray(photo.getInputStream()));
 		return this.dogePhotoRepository.save(dogePhoto);
 	}
 
