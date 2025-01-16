@@ -27,7 +27,6 @@ import doge.photo.PhotoResource;
 import doge.service.DogePhotoService;
 
 import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -68,9 +67,7 @@ public class UsersRestController {
 		URI uri = uriBuilder.path("/users/{username}/doge/{uuid}")
 			.buildAndExpand(username, dogePhoto.getUuid())
 			.toUri();
-		HttpHeaders headers = new HttpHeaders();
-		headers.setLocation(uri);
-		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+		return ResponseEntity.created(uri).build();
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "{username}/doge/{uuid}", produces = MediaType.IMAGE_PNG_VALUE)
@@ -78,9 +75,7 @@ public class UsersRestController {
 	public ResponseEntity<Resource> getDogePhoto(@PathVariable String username, @PathVariable String uuid) {
 		DogeUser user = getUser(username);
 		Photo photo = this.dogeService.get(user, uuid);
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.IMAGE_JPEG);
-		return new ResponseEntity<>(new PhotoResource(photo), headers, HttpStatus.OK);
+		return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(new PhotoResource(photo));
 	}
 
 	private DogeUser getUser(String username) {
