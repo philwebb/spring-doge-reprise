@@ -16,8 +16,6 @@
 
 package doge;
 
-import javax.servlet.MultipartConfigElement;
-
 import doge.domain.DogeUser;
 import doge.domain.DogeUserRepository;
 import doge.photo.DogePhotoManipulator;
@@ -26,7 +24,6 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.context.embedded.MultiPartConfigFactory;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -37,12 +34,6 @@ import org.springframework.context.annotation.Configuration;
 @EnableAutoConfiguration
 @EnableConfigurationProperties(DogeProperties.class)
 public class DogeApplication {
-
-	@Bean
-	MultipartConfigElement multipartConfigElement() {
-		MultiPartConfigFactory factory = new MultiPartConfigFactory();
-		return factory.createMultipartConfig();
-	}
 
 	@Bean
 	DogePhotoManipulator dogePhotoManipulator() {
