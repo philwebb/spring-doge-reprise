@@ -1,0 +1,9 @@
+services:
+  database:
+    image: 'postgres:14.0'
+    ports:
+      - '5432:5432'
+    environment:
+      - 'POSTGRES_USER=doge'
+      - 'POSTGRES_DB=doge'
+      - 'POSTGRES_PASSWORD=doge'
