@@ -76,6 +76,48 @@
 				<groupId>org.cyclonedx</groupId>
 				<artifactId>cyclonedx-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>software.xdev</groupId>
+				<artifactId>music-maven-plugin</artifactId>
+				<version>1.0.1</version>
+				<inherited>false</inherited>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>music</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>software.xdev</groupId>
+										<artifactId>music-maven-plugin</artifactId>
+										<versionRange>[1.0.0,)</versionRange>
+										<goals>
+											<goal>music</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 </project>
