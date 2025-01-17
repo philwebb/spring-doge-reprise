@@ -17,11 +17,20 @@
 package doge;
 
 import org.junit.jupiter.api.Test;
+import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 
 @SpringBootTest
+@Testcontainers
 public class DogeApplicationTests {
+
+	@Container
+	@ServiceConnection
+	static PostgreSQLContainer<?> postgreSQLContainer = new PostgreSQLContainer<>("postgres:14.0");
 
 	@Test
 	public void contextLoads() {
