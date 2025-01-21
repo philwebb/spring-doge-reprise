@@ -32,6 +32,7 @@
 	<modules>
 		<module>spring-doge</module>
 		<module>spring-doge-photo</module>
+		<module>spring-doge-monitor</module>
 	</modules>
 	<build>
 		<plugins>
