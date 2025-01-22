@@ -26,7 +26,6 @@ import doge.photo.Photo;
 import doge.photo.PhotoResource;
 import doge.service.DogePhotoService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -50,7 +49,6 @@ public class UsersRestController {
 
 	private final DogePhotoService dogeService;
 
-	@Autowired
 	public UsersRestController(DogeUserRepository userRepository, DogePhotoService dogeService) {
 		this.userRepository = userRepository;
 		this.dogeService = dogeService;
